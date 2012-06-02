@@ -8,7 +8,7 @@ On Fri, Jun 01, 2012 at 08:22:21PM -0400, Mark Essel wrote:
 >
 > How did this happen?
 
-SQL is nothing complicated. MySQL docs are great and you can search its manual for elements of its syntax: [http://dev.mysql.com/doc/refman/5.0/en](http://dev.mysql.com/doc/refman/5.0/en)
+SQL is nothing complicated. MySQL docs are great and you can search its manual for elements of its syntax: http://dev.mysql.com/doc/refman/5.0/en
 
 You probably already know the basics, don't you? SELECT, DELETE and UPDATE are the basic things. BTW, if you're into the theory, look up relational algebra. I rather talk SQL than relational algebra, though.
 
