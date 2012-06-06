@@ -90,7 +90,6 @@ user_id, username, city_id
 
 Let's try that with a normal join:
 
--------------------------------------
 ```sql
 SELECT
     users.username,
@@ -98,14 +97,12 @@ SELECT
 FROM
     users JOIN cities ON users.city_id = cities.city_id
 ```    
--------------------------------------
-Messel, New York
-Lauren, Chicago
--------------------------------------
+
+    Messel, New York
+    Lauren, Chicago
 
 As you can see, this excludes the 3rd row, because it doesn't have a city id.  Now, with an outer join:
 
--------------------------------------
 ```sql
 SELECT
     users.username,
@@ -113,15 +110,13 @@ SELECT
 FROM
     users LEFT OUTER JOIN cities ON users.city_id = cities.city_id
 ```    
--------------------------------------
-Messel, New York
-Lauren, Chicago
-Enobrev, NULL
--------------------------------------
+
+    Messel, New York
+    Lauren, Chicago
+    Enobrev, NULL
 
 I can't think of many instances where I wouldn't want to list the 3rd user just because they don't have a city set in the database.  If that were the case, I would explicitly say so like so:
 
--------------------------------------
 ```sql
 SELECT
     users.username,
@@ -131,14 +126,12 @@ FROM
 WHERE 
     users.city_id IS NOT NULL
 ```    
--------------------------------------
-Messel, New York
-Lauren, Chicago
--------------------------------------
+
+    Messel, New York
+    Lauren, Chicago
 
 Doing this the former way (INNER JOIN) reminds me of the "bug" you found in TJ Hollowaychuk's code.  It turned out the order of operations worked in his favor.  But I would still call it a bug, or at the VERY least sloppy code.  I prefer the more explicit route.  Sure, using [INNER] JOIN can be considered explicit, provided you know SQL well (just as Order of Ops are obvious to some), but when debugging code, I prefer the long form.  And besides, the long form allows other ways to be explicit:
 
--------------------------------------
 ```sql
 SELECT
     users.username,
@@ -148,13 +141,11 @@ FROM
 WHERE users.city_id IS NOT NULL
 AND users.city_name != 'Chicago'
 ```
--------------------------------------
-Messel, New York
--------------------------------------
+
+    Messel, New York
 
 In this case, we're just adding an additional where clause instead of mucking around with the join structure, which means the very same query can be:
 
--------------------------------------
 ```sql
 SELECT
     users.username,
@@ -163,10 +154,9 @@ FROM
     users LEFT OUTER JOIN cities ON users.city_id = cities.city_id
 WHERE users.city_name != 'Chicago'
 ```
--------------------------------------
-Messel, New York
-Enobrev, NULL
--------------------------------------
+
+    Messel, New York
+    Enobrev, NULL
 
 Again, our fields, and tables are untouched.  We're just modifying conditions, which makes what the query is trying to do fairly clear.  I think comparing these queries and results are more obvious to the reader.
 
