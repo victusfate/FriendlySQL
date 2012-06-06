@@ -74,19 +74,19 @@ This, to me, is an important point.  Whenever I'm running a query, I just about 
 
 Let's take 2 tables: users and cities
 
-users: user_id, username, city_id
-cities: city_id, city_name
+    users: user_id, username, city_id
+    cities: city_id, city_name
 
 and a couple records:
 
-city_id, city_name
-1, Chicago
-2, New York
+    city_id, city_name
+    1, Chicago
+    2, New York
 
-user_id, username, city_id
-1, Messel, 2
-2, Lauren, 1
-3, Enobrev, NULL
+    user_id, username, city_id
+    1, Messel, 2
+    2, Lauren, 1
+    3, Enobrev, NULL
 
 Let's try that with a normal join:
 
