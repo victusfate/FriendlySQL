@@ -139,7 +139,7 @@ SELECT
 FROM
     users LEFT OUTER JOIN cities ON users.city_id = cities.city_id
 WHERE users.city_id IS NOT NULL
-AND users.city_name != 'Chicago'
+AND cities.city_name != 'Chicago'
 ```
 
     Messel, New York
@@ -152,11 +152,13 @@ SELECT
     cities.city_name
 FROM
     users LEFT OUTER JOIN cities ON users.city_id = cities.city_id
-WHERE users.city_name != 'Chicago'
+WHERE cities.city_name != 'Chicago'
 ```
 
     Messel, New York
     Enobrev, NULL
+
+The above querys in sqlfiddle: http://sqlfiddle.com/#!2/f1a2e/3
 
 Again, our fields, and tables are untouched.  We're just modifying conditions, which makes what the query is trying to do fairly clear.  I think comparing these queries and results are more obvious to the reader.
 
