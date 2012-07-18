@@ -20,7 +20,10 @@ multiroutes AS (
         m.full_route || n.to_city,
         m.total_length + n.LENGTH,
         n.to_city = f.to_city AS solved,
-        MIN(CASE WHEN n.to_city = f.to_city THEN m.total_length + n.LENGTH ELSE NULL END) OVER () AS min_solve,
+        least(
+            m.min_solve,
+            MIN(CASE WHEN n.to_city = f.to_city THEN m.total_length + n.LENGTH ELSE NULL END) OVER ()
+        ) AS min_solve,
         MIN(m.total_length + n.LENGTH) OVER (PARTITION BY n.to_city) AS best_to_length
     FROM findpath f
         JOIN multiroutes m USING (from_city)
